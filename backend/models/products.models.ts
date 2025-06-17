@@ -8,8 +8,8 @@ export interface IProduct extends Document {
   price: number;
   discountPrice?: number; // Optional discount field
   category: mongoose.Types.ObjectId; // Reference to Category
-  imageUrl?: string;
-  stock: number;
+  image?: string;
+  quantity: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -26,8 +26,11 @@ const ProductSchema: Schema<IProduct> = new Schema(
       ref: "Category",
       required: true,
     },
-    imageUrl: { type: String },
-    stock: { type: Number, required: true, default: 0 }, // Stock field
+    image: { type: String },
+    quantity: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,

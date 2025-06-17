@@ -5,7 +5,7 @@ export interface ICategory extends Document {
   _id: mongoose.Types.ObjectId;
   name: string;
   description?: string;
-  imageUrl?: string;
+  image?: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -15,7 +15,7 @@ const CategorySchema: Schema<ICategory> = new Schema(
   {
     name: { type: String, required: true, unique: true },
     description: { type: String },
-    imageUrl: { type: String },
+    image: { type: String },
   },
   {
     timestamps: true,

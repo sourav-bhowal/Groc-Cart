@@ -132,6 +132,7 @@ export const refreshToken = async (
       role: string;
     };
 
+    // User variable to hold the fetched user
     let user: ICustomer | IDeliveryPartner | null;
 
     // Check if the decoded token has a valid role
@@ -202,6 +203,7 @@ export const fetchUser = async (req: FastifyRequest, reply: FastifyReply) => {
   }
 };
 
+// Function to update user information
 export const updateUser = async (req: FastifyRequest, reply: FastifyReply) => {
   try {
     // Extract user ID and update data from the request

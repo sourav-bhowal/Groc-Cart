@@ -3,7 +3,7 @@ import mongoose, { Schema, Document, Types } from "mongoose";
 // Base User Interface
 export interface IUser extends Document {
   _id: mongoose.Types.ObjectId;
-  username: string;
+  userName: string;
   role: "Admin" | "Customer" | "DeliveryPartner";
   isActive: boolean;
   createdAt: Date;
@@ -13,7 +13,7 @@ export interface IUser extends Document {
 // Base User Schema
 const UserSchema: Schema<IUser> = new Schema(
   {
-    username: { type: String, required: true, unique: true },
+    userName: { type: String, required: true, unique: true },
     role: {
       type: String,
       required: true,
@@ -112,7 +112,10 @@ export const DeliveryPartnerModel =
   mongoose.model<IDeliveryPartner>("DeliveryPartner", DeliveryPartnerSchema);
 
 // Extended Admin Interface
-export interface IAdmin extends IUser {}
+export interface IAdmin extends IUser {
+  email: string;
+  password: string;
+}
 
 // Merge User fields with Admin fields
 const AdminSchema: Schema<IAdmin> = new Schema({
@@ -122,6 +125,8 @@ const AdminSchema: Schema<IAdmin> = new Schema({
     enum: ["Admin"], // Overriding role to be Admin only
     default: "Admin",
   },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
 });
 
 // Merge User Schema with Admin Schema

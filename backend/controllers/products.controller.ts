@@ -1,7 +1,7 @@
 import { ProductModel } from "../models/index.models";
 import type { FastifyReply, FastifyRequest } from "fastify";
 
-export const getProductsByCategory = async (
+export const getProductsByCategoryId = async (
   req: FastifyRequest,
   reply: FastifyReply
 ) => {
