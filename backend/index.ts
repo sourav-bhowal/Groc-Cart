@@ -11,6 +11,7 @@ import fastifySocketIO from "fastify-socket.io";
 import { Store } from "@voidpkg/fastify-mongo-store";
 import { appRoutes } from "./routes/index.routes";
 import fastifySession from "@fastify/session";
+import { adminRouter } from "./config/admin";
 
 // Function to initialize the server
 const startServer = async () => {
@@ -37,18 +38,21 @@ const startServer = async () => {
     transports: ["websocket"], // Use both polling and websocket transports
   });
 
-  // Register session management
-  server.register(fastifySession, {
-    secret: process.env.COOKIE_SECRET!,
-    store: new Store({
-      collection: "sessions", // Collection name for storing sessions
-      url: MONGODB_URI, // MongoDB connection URI
-      database: "groc-cart", // Database name
-    }),
-  });
+  // // Register session management
+  // server.register(fastifySession, {
+  //   secret: process.env.COOKIE_SECRET!,
+  //   store: new Store({
+  //     collection: "sessions", // Collection name for storing sessions
+  //     url: MONGODB_URI, // MongoDB connection URI
+  //     database: "groc-cart", // Database name
+  //   }),
+  // });
 
   // Register application routes
   server.register(appRoutes);
+
+  // Register MongoDB store for session management
+  server.register(adminRouter);
 
   // Default route for testing server
   server.get("/", async (request: FastifyRequest, reply: FastifyReply) => {

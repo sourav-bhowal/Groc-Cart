@@ -6,3 +6,4 @@ export const ACCESS_TOKEN_SECRET =
   process.env.ACCESS_TOKEN_SECRET || "your_default_access_token_secret";
 export const REFRESH_TOKEN_SECRET =
   process.env.REFRESH_TOKEN_SECRET || "your_default_refresh_token_secret";
+export const COOKIE_SECRET = process.env.COOKIE_SECRET || "your_default_cookie_secret";

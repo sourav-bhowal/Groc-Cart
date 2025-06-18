@@ -71,9 +71,9 @@ export interface IDeliveryPartner extends IUser {
   password: string;
   phoneNumber: number;
   vehicleType: string;
-  liveLocation: {
-    latitude: number;
-    longitude: number;
+  liveLocation?: {
+    latitude?: number;
+    longitude?: number;
   };
   address?: string;
   branch: Types.ObjectId; // Reference to Branch model
@@ -92,8 +92,8 @@ const DeliveryPartnerSchema: Schema<IDeliveryPartner> = new Schema({
     default: "DeliveryPartner",
   },
   liveLocation: {
-    latitude: { type: Number, required: true },
-    longitude: { type: Number, required: true },
+    latitude: { type: Number },
+    longitude: { type: Number},
   },
   address: { type: String },
   branch: {
